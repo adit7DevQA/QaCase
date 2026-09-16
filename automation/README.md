@@ -169,3 +169,57 @@ The following objects are used:
 - `SignIn/txt_MicrosoftPassword`
 - `SignIn/btn_MicrosoftSignIn`
 - `Home/lbl_Home`
+
+### TC_SignIn_Invalid
+
+This test case automates the unsuccessful Sign In flow using an invalid password.
+
+Test flow:
+1. Launch the WeMine application.
+2. Enter a valid username.
+3. Tap the Sign In button.
+4. Wait for the Microsoft authentication page.
+5. Enter an invalid password.
+6. Tap the Microsoft Sign In button.
+7. Verify that the invalid credential error message is displayed.
+
+Test Objects:
+- `SignIn/txt_Username`
+- `SignIn/btn_SignIn`
+- `SignIn/txt_MicrosoftPassword`
+- `SignIn/btn_MicrosoftSignIn`
+- `SignIn/lbl_InvalidCredentialError`
+
+
+### TC_Submit_Hazard_Valid
+
+This test case demonstrates the automation flow for submitting a Safety Hazard Report with valid mandatory data.
+
+Test flow:
+1. Launch the WeMine application.
+2. Open the Safety Hazard Report form.
+3. Create a new Safety Hazard Report.
+4. Enter a valid hazard description.
+5. Submit the Safety Hazard Report.
+6. Verify that the report is submitted successfully.
+
+Test Objects:
+- `SafetyHazard/btn_CreateHazard`
+- `SafetyHazard/txt_HazardDescription`
+- `SafetyHazard/btn_SubmitHazard`
+- `SafetyHazard/lbl_HazardSubmitSuccess`
+
+
+## Execution Notes
+
+The automation examples provide the proposed Katalon implementation structure.
+
+Actual execution requires:
+- Access to the WeMine application build.
+- A configured Android device or emulator.
+- Valid test credentials.
+- Actual element locators captured from the application.
+
+The current Test Object locators are placeholders and should be replaced with actual locators when application access is available.
+
+Sensitive credentials should not be hardcoded or committed to the repository.
