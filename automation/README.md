@@ -193,21 +193,39 @@ Test Objects:
 
 ### TC_Submit_Hazard_Valid
 
-This test case demonstrates the automation flow for submitting a Safety Hazard Report with valid mandatory data.
+This test case demonstrates the proposed automation flow for submitting a Safety Hazard Report with valid mandatory data.
 
 Test flow:
 1. Launch the WeMine application.
 2. Open the Safety Hazard Report form.
 3. Create a new Safety Hazard Report.
-4. Enter a valid hazard description.
-5. Submit the Safety Hazard Report.
-6. Verify that the report is submitted successfully.
+4. Select Location.
+5. Select Sublocation.
+6. Select Area.
+7. Add Evidence.
+8. Verify that the PIC field is available.
+9. Submit the Safety Hazard Report.
+10. Verify that the report is submitted successfully.
+
+Mandatory fields covered:
+- Location
+- Sublocation
+- Area
+- Evidence
+- PIC
 
 Test Objects:
 - `SafetyHazard/btn_CreateHazard`
-- `SafetyHazard/txt_HazardDescription`
+- `SafetyHazard/ddl_Location`
+- `SafetyHazard/ddl_Sublocation`
+- `SafetyHazard/ddl_Area`
+- `SafetyHazard/img_Evidence`
+- `SafetyHazard/ddl_PIC`
 - `SafetyHazard/btn_SubmitHazard`
 - `SafetyHazard/lbl_HazardSubmitSuccess`
+
+Note:
+The dropdown selections and evidence image picker use placeholder locators because the actual WeMine application build is not available. These locators should be updated after inspecting the application using Katalon Mobile Spy or Object Spy.
 
 
 ## Execution Notes
