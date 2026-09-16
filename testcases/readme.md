@@ -67,3 +67,51 @@
 - Supported image formats and maximum image file size are not specified.
 - The application is designed to support poor or no internet connectivity, but the exact offline submission and synchronization mechanism is not specified.
 - Detailed validation rules for Date Picker and Select fields are not specified.
+
+---
+
+## Flow 2 - Safety Hazard Report
+
+### Manual Test Cases
+
+| ID | Test Scenario | Precondition | Test Steps | Expected Result | Type | Priority |
+|---|---|---|---|---|---|---|
+| SH-001 | Open Hazard menu | User is authenticated and has access to Hazard menu | 1. Sign in to the application. 2. Open the Hazard menu. | Hazard page is displayed and user can see the list of hazard reports. | Positive | High |
+| SH-002 | Create a new hazard report with valid mandatory data | User is on the Hazard page | 1. Create a new hazard report. 2. Select Location. 3. Select Sublocation. 4. Select Area. 5. Add Evidence. 6. Verify PIC is preselected to reporter. 7. Submit the report. | Hazard report is successfully submitted and a hazard entity is created. | Positive | Critical |
+| SH-003 | Verify Location is mandatory | User is creating a new hazard report | 1. Leave Location empty. 2. Complete the other mandatory fields. 3. Submit the report. | Validation is displayed for Location and the hazard report is not submitted. | Negative | High |
+| SH-004 | Verify Sublocation is mandatory | User is creating a new hazard report | 1. Select Location. 2. Leave Sublocation empty. 3. Complete the other mandatory fields. 4. Submit the report. | Validation is displayed for Sublocation and the hazard report is not submitted. | Negative | High |
+| SH-005 | Verify Area is mandatory | User is creating a new hazard report | 1. Select Location and Sublocation. 2. Leave Area empty. 3. Complete the other mandatory fields. 4. Submit the report. | Validation is displayed for Area and the hazard report is not submitted. | Negative | High |
+| SH-006 | Submit hazard without optional Area Description | User is creating a new hazard report | 1. Complete Location, Sublocation, Area, Evidence, and PIC. 2. Leave Area Description empty. 3. Submit the report. | Hazard report is successfully submitted without Area Description. | Positive | Medium |
+| SH-007 | Verify Evidence is mandatory | User is creating a new hazard report | 1. Complete the required fields except Evidence. 2. Submit the report. | Validation is displayed for Evidence and the hazard report is not submitted. | Negative | High |
+| SH-008 | Verify PIC is preselected to reporter | User is creating a new hazard report | 1. Open the new hazard report form. 2. Check the PIC field. | PIC field is automatically preselected to the reporter. | Positive | High |
+| SH-009 | Verify follow-up task is generated after hazard submission | A valid hazard report is ready to be submitted | 1. Submit the hazard report. 2. Verify the created hazard. 3. Check the associated follow-up task. | System creates a hazard entity and a follow-up task for the submitted hazard. | Positive | Critical |
+| SH-010 | Verify PIC receives follow-up notification | Hazard report has been successfully submitted | 1. Submit a hazard report. 2. Check notification received by the PIC. | PIC receives a notification for the follow-up task. | Positive | Critical |
+| SH-011 | Verify people in the area receive hazard notification | Hazard report has been successfully submitted | 1. Submit a hazard report for a specific area. 2. Check notifications for users associated with that area. | People in the affected area receive a notification about the hazard. | Positive | Critical |
+| SH-012 | PIC submits completed follow-up task | PIC has received a follow-up task and resolved the issue | 1. Open the follow-up task. 2. Add Evidence. 3. Select Resolution Date. 4. Select Co Observer if needed. 5. Submit the follow-up task. | Follow-up task is successfully submitted with the resolution information. | Positive | Critical |
+| SH-013 | Verify Resolution Date is mandatory | PIC is completing a follow-up task | 1. Open the follow-up task. 2. Add Evidence. 3. Leave Resolution Date empty. 4. Submit the follow-up task. | Validation is displayed for Resolution Date and the follow-up task is not submitted. | Negative | High |
+| SH-014 | Add multiple Co Observers | PIC is completing a follow-up task | 1. Open the follow-up task. 2. Select a Co Observer. 3. Click the (+) button. 4. Add another Co Observer. | Additional Co Observer select field is added and multiple Co Observers can be selected. | Positive | Medium |
+| SH-015 | Verify Direct Supervisor receives notification | PIC has successfully submitted the follow-up task | 1. Complete and submit the follow-up task. 2. Check the Direct Supervisor notification. | Direct Supervisor of the area receives a notification for the completed follow-up. | Positive | High |
+
+### Automation Test Cases
+
+| ID | Test Scenario | Precondition | Test Steps | Expected Result | Type | Priority |
+|---|---|---|---|---|---|---|
+| SH-A001 | Create hazard report with valid data | Authenticated user has access to Hazard feature | 1. Open Hazard menu. 2. Create a new hazard report. 3. Complete all mandatory fields. 4. Submit the report. | Hazard report is successfully created and displayed in the hazard report list. | Positive | Critical |
+| SH-A002 | Validate mandatory fields on hazard report | User is on the new Hazard Report form | 1. Leave mandatory fields empty. 2. Submit the form. | System displays validation for required fields and prevents submission. | Negative | Critical |
+| SH-A003 | Verify hazard entity and follow-up task creation | Valid hazard report is submitted | 1. Submit a valid hazard report. 2. Verify the generated hazard entity. 3. Verify the associated follow-up task. | Hazard entity and follow-up task are successfully generated. | Positive | Critical |
+| SH-A004 | Verify PIC follow-up notification | Hazard report is successfully submitted | 1. Submit a hazard report. 2. Verify notification generated for the PIC. | PIC receives the follow-up task notification. | Positive | Critical |
+| SH-A005 | Verify area hazard notification | Hazard report is successfully submitted for a specific area | 1. Submit a hazard report. 2. Verify notifications for users associated with the affected area. | Users in the affected area receive the hazard notification. | Positive | High |
+| SH-A006 | Submit hazard follow-up task | PIC has an active follow-up task | 1. Open the follow-up task. 2. Add Evidence. 3. Select Resolution Date. 4. Submit the task. | Follow-up task is successfully completed and submitted. | Positive | Critical |
+| SH-A007 | Verify multiple Co Observers | PIC is completing a follow-up task | 1. Select a Co Observer. 2. Click the (+) button. 3. Select another Co Observer. | System allows additional Co Observer fields to be added and selected. | Positive | Medium |
+| SH-A008 | Verify Direct Supervisor notification | Follow-up task has been successfully submitted | 1. Complete the follow-up task. 2. Verify notification generated for the Direct Supervisor. | Direct Supervisor of the area receives the expected notification. | Positive | High |
+
+### Assumptions / Clarifications
+
+- The requirement specifies Location, Sublocation, Area, Evidence, and PIC as mandatory fields for a hazard report.
+- Area Description is specified as optional.
+- PIC is preselected to the reporter, but the requirement does not specify whether the reporter can change the PIC.
+- The requirement does not specify supported image formats or maximum Evidence file size.
+- The requirement does not specify the maximum number of Co Observers that can be added.
+- The requirement states that people in the area receive hazard notifications, but does not specify how users are mapped to an area.
+- The requirement states that the Direct Supervisor receives a notification, but the exact notification content and delivery channel are not specified.
+- Evidence is listed for the follow-up task, but the requirement does not explicitly mark it as mandatory or optional.
