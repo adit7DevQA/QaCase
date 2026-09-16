@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalVariableEntities>
+   <description>Default execution profile for WeMine automation</description>
+   <name>default</name>
+   <tag></tag>
+
+   <GlobalVariableEntity>
+      <description>Path to WeMine application</description>
+      <initValue>''</initValue>
+      <name>APP_PATH</name>
+      <protected>false</protected>
+      <valueType>STRING</valueType>
+   </GlobalVariableEntity>
+
+   <GlobalVariableEntity>
+      <description>Username for Sign In testing</description>
+      <initValue>''</initValue>
+      <name>USERNAME</name>
+      <protected>false</protected>
+      <valueType>STRING</valueType>
+   </GlobalVariableEntity>
+
+   <GlobalVariableEntity>
+      <description>Password for Sign In testing</description>
+      <initValue>''</initValue>
+      <name>PASSWORD</name>
+      <protected>true</protected>
+      <valueType>STRING</valueType>
+   </GlobalVariableEntity>
+
+</GlobalVariableEntities>
