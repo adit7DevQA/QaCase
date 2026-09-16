@@ -11,7 +11,6 @@ import internal.GlobalVariable
  * Precondition:
  * - WeMine application is installed
  * - Valid username is available
- * - User is on the Sign In page
  */
 
 Mobile.comment('Start invalid Sign In test')
@@ -59,14 +58,14 @@ Mobile.tap(
     10
 )
 
-// Verify user remains on Microsoft authentication page
+// Verify invalid credential error is displayed
 Mobile.waitForElementPresent(
-    findTestObject('SignIn/txt_MicrosoftPassword'),
+    findTestObject('SignIn/lbl_InvalidCredentialError'),
     10,
     FailureHandling.STOP_ON_FAILURE
 )
 
-Mobile.comment('Sign In failed as expected with invalid password')
+Mobile.comment('Invalid credential error displayed as expected')
 
 // Close application
 Mobile.closeApplication()
