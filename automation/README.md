@@ -142,3 +142,30 @@ The following test cases are recommended as examples for automation:
 10. Submit completed Hazard follow-up task.
 
 These scenarios represent important and repeatable flows that are suitable for automation testing using Katalon Studio.
+
+## Implemented Automation
+
+### TC_SignIn_Valid
+
+This test case automates the successful Sign In flow using valid user credentials.
+
+Test flow:
+1. Launch the WeMine application.
+2. Enter a valid username.
+3. Tap the Sign In button.
+4. Wait for the Microsoft authentication page.
+5. Enter a valid password.
+6. Tap the Microsoft Sign In button.
+7. Verify that the Home page is displayed.
+
+The application path and test credentials are managed using Katalon Global Variables. Credentials are not hardcoded in the test case or committed to the repository.
+
+### Test Objects
+
+The following objects are used:
+
+- `SignIn/txt_Username`
+- `SignIn/btn_SignIn`
+- `SignIn/txt_MicrosoftPassword`
+- `SignIn/btn_MicrosoftSignIn`
+- `Home/lbl_Home`
