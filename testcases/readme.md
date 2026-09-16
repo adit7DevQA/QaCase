@@ -120,52 +120,37 @@
 
 ## Test Automation Strategy
 
-### Selected Tools
+### Selected Tool
 
-For test automation, I would use the following tools:
+For test automation, I would use **Katalon Studio** as the primary automation tool.
 
-**1. Appium**
+Katalon Studio is selected because WeMine is a mobile application and the main flows such as Sign In, Equipment Inspection, and Safety Hazard Report involve interactions with mobile UI components.
 
-Appium is selected for Mobile Application automation because WeMine is a mobile application and the main flows such as Sign In, Equipment Inspection, and Safety Hazard Report involve user interaction with mobile UI components.
+Katalon Studio provides built-in support for mobile automation and is suitable for creating maintainable automated test cases using reusable Test Objects, execution profiles, and Groovy-based test scripts.
 
-Appium can be used to automate important user flows such as:
+Katalon Studio can be used to automate important user flows such as:
+
 - Sign In
+- Microsoft authentication flow
 - Opening Equipment Inspection
-- Filling dynamic form fields
+- Validating dynamic form fields
 - Creating Safety Hazard Reports
-- Uploading evidence
-- Completing follow-up tasks
+- Validating mandatory fields
+- Uploading Evidence
+- Completing Hazard follow-up tasks
 
-Appium also supports Android and iOS, which makes the automation approach reusable across mobile platforms.
+Katalon Studio also provides Object Repository management, which helps separate element locators from test scripts and makes the automation easier to maintain when application elements change.
 
-**2. REST Assured**
+### Why Katalon Studio
 
-REST Assured is selected for API automation because WeMine uses several backend services such as User Service, Tenant Service, Notification Service, Equipment Service, Safety Service, Order Service, and Workflow Service.
+Katalon Studio was selected for the following reasons:
 
-API automation can validate important backend processes such as:
-- User authentication
-- Retrieving user profile
-- Retrieving tenant master data
-- Creating hazard entities
-- Creating follow-up tasks
-- Validating notification-related API responses
-
-API testing is useful because backend validation can be performed faster and more reliably without depending entirely on the mobile UI.
-
-**3. Java**
-
-Java is selected as the programming language because it can be used with both Appium and REST Assured. Using the same programming language for Mobile UI and API automation makes the automation framework easier to maintain.
-
-**4. JUnit**
-
-JUnit is selected as the test framework to organize, execute, and manage automated test cases.
-
-JUnit can be used for:
-- Test execution
-- Assertions
-- Test setup and teardown
-- Grouping test cases
-- Integration with CI/CD pipelines
+1. It provides built-in support for mobile application automation.
+2. It supports reusable Test Objects through Object Repository.
+3. It supports Groovy scripting for more flexible test implementation.
+4. It provides Execution Profiles to manage environment variables and test data.
+5. It can support both UI and API testing in the same testing ecosystem.
+6. It is suitable for creating readable and maintainable automation examples for critical application flows.
 
 ### Automation Approach
 
@@ -174,33 +159,34 @@ Not every test case should be automated. Automation should prioritize scenarios 
 The main automation priorities are:
 
 1. Sign In with a valid user.
-2. User profile and tenant master data retrieval.
-3. Equipment Inspection form loading based on Form Code.
-4. Hazard Report creation.
-5. Follow-up task generation after Hazard submission.
-6. PIC notification process.
-7. Hazard follow-up task completion.
-8. Direct Supervisor notification process.
+2. Sign In validation with invalid credentials.
+3. User profile and tenant master data retrieval.
+4. Equipment Inspection form loading based on Form Code.
+5. Safety Hazard Report creation with mandatory data.
+6. Mandatory field validation on Safety Hazard Report.
+7. Follow-up task generation after Hazard submission.
+8. PIC notification process.
+9. Hazard follow-up task completion.
+10. Direct Supervisor notification process.
 
-Manual testing should still be used for exploratory testing, usability testing, visual validation, and scenarios that require human observation.
+Manual testing should still be used for exploratory testing, usability testing, visual validation, network interruption scenarios, and scenarios that require human observation.
 
 ### Proposed Automation Project Structure
 
-A separate automation repository or directory can be created with the following structure:
+The automation examples are stored in the `automation` directory using a Katalon-style project structure:
 
 ```text
 automation/
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       ├── pages/
-│   │       ├── api/
-│   │       └── utils/
-│   └── test/
-│       └── java/
-│           ├── signin/
-│           ├── equipment/
-│           └── hazard/
-├── resources/
-├── pom.xml
+├── Object Repository/
+│   ├── SignIn/
+│   ├── Home/
+│   └── SafetyHazard/
+├── Profiles/
+│   └── default.glbl
+├── Test Cases/
+│   ├── SignIn/
+│   │   ├── TC_SignIn_Valid.groovy
+│   │   └── TC_SignIn_Invalid.groovy
+│   └── SafetyHazard/
+│       └── TC_Submit_Hazard_Valid.groovy
 └── README.md
