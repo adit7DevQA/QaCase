@@ -115,3 +115,92 @@
 - The requirement states that people in the area receive hazard notifications, but does not specify how users are mapped to an area.
 - The requirement states that the Direct Supervisor receives a notification, but the exact notification content and delivery channel are not specified.
 - Evidence is listed for the follow-up task, but the requirement does not explicitly mark it as mandatory or optional.
+
+---
+
+## Test Automation Strategy
+
+### Selected Tools
+
+For test automation, I would use the following tools:
+
+**1. Appium**
+
+Appium is selected for Mobile Application automation because WeMine is a mobile application and the main flows such as Sign In, Equipment Inspection, and Safety Hazard Report involve user interaction with mobile UI components.
+
+Appium can be used to automate important user flows such as:
+- Sign In
+- Opening Equipment Inspection
+- Filling dynamic form fields
+- Creating Safety Hazard Reports
+- Uploading evidence
+- Completing follow-up tasks
+
+Appium also supports Android and iOS, which makes the automation approach reusable across mobile platforms.
+
+**2. REST Assured**
+
+REST Assured is selected for API automation because WeMine uses several backend services such as User Service, Tenant Service, Notification Service, Equipment Service, Safety Service, Order Service, and Workflow Service.
+
+API automation can validate important backend processes such as:
+- User authentication
+- Retrieving user profile
+- Retrieving tenant master data
+- Creating hazard entities
+- Creating follow-up tasks
+- Validating notification-related API responses
+
+API testing is useful because backend validation can be performed faster and more reliably without depending entirely on the mobile UI.
+
+**3. Java**
+
+Java is selected as the programming language because it can be used with both Appium and REST Assured. Using the same programming language for Mobile UI and API automation makes the automation framework easier to maintain.
+
+**4. JUnit**
+
+JUnit is selected as the test framework to organize, execute, and manage automated test cases.
+
+JUnit can be used for:
+- Test execution
+- Assertions
+- Test setup and teardown
+- Grouping test cases
+- Integration with CI/CD pipelines
+
+### Automation Approach
+
+Not every test case should be automated. Automation should prioritize scenarios that are critical, repeatable, and frequently executed.
+
+The main automation priorities are:
+
+1. Sign In with a valid user.
+2. User profile and tenant master data retrieval.
+3. Equipment Inspection form loading based on Form Code.
+4. Hazard Report creation.
+5. Follow-up task generation after Hazard submission.
+6. PIC notification process.
+7. Hazard follow-up task completion.
+8. Direct Supervisor notification process.
+
+Manual testing should still be used for exploratory testing, usability testing, visual validation, and scenarios that require human observation.
+
+### Proposed Automation Project Structure
+
+A separate automation repository or directory can be created with the following structure:
+
+```text
+automation/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       ├── pages/
+│   │       ├── api/
+│   │       └── utils/
+│   └── test/
+│       └── java/
+│           ├── signin/
+│           ├── equipment/
+│           └── hazard/
+├── resources/
+├── pom.xml
+└── README.md
