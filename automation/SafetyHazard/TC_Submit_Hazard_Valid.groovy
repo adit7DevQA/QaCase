@@ -12,6 +12,7 @@ import internal.GlobalVariable
  * - WeMine application is installed
  * - User has successfully signed in
  * - User has access to Safety Hazard Report
+ * - Valid master data is available
  */
 
 Mobile.comment('Start Safety Hazard Report test')
@@ -26,26 +27,50 @@ Mobile.waitForElementPresent(
     FailureHandling.STOP_ON_FAILURE
 )
 
-// Tap Create Hazard
+// Open Create Hazard form
 Mobile.tap(
     findTestObject('SafetyHazard/btn_CreateHazard'),
     10
 )
 
-// Input Hazard Description
-Mobile.setText(
-    findTestObject('SafetyHazard/txt_HazardDescription'),
-    'Oil spill found on the workshop floor',
+// Select Location
+Mobile.tap(
+    findTestObject('SafetyHazard/ddl_Location'),
     10
 )
 
-// Tap Submit
+// Select Sublocation
+Mobile.tap(
+    findTestObject('SafetyHazard/ddl_Sublocation'),
+    10
+)
+
+// Select Area
+Mobile.tap(
+    findTestObject('SafetyHazard/ddl_Area'),
+    10
+)
+
+// Add Evidence
+Mobile.tap(
+    findTestObject('SafetyHazard/img_Evidence'),
+    10
+)
+
+// Verify PIC field is available
+Mobile.waitForElementPresent(
+    findTestObject('SafetyHazard/ddl_PIC'),
+    10,
+    FailureHandling.STOP_ON_FAILURE
+)
+
+// Submit Safety Hazard Report
 Mobile.tap(
     findTestObject('SafetyHazard/btn_SubmitHazard'),
     10
 )
 
-// Verify Hazard Report submitted successfully
+// Verify submission success
 Mobile.waitForElementPresent(
     findTestObject('SafetyHazard/lbl_HazardSubmitSuccess'),
     15,
